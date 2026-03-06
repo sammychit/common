@@ -1,24 +1,42 @@
-# Introduction
+# Setup the Cloud EPM instance
+## Introduction
 
-## About this Workshop
-The workshop is a stepwise guide to create an EPCM (Enterprise Profitability and Costing Management) application to help facilitate costing and allocation  solutions in Oracle.
+Once you login into the Cloud environment, you will then be setting up the environment for an **EPCM** application.
 
-Estimated Workshop Time: -- hours -- minutes
+Estimated Lab Time: -- minutes
+
+### About enabling Cloud environment as an EPCM application instance
 
 ### Objectives
-In this workshop, you will learn how to:
-* Create and configure an EPCM application from scratch
-* Migration from PCM to EPCM
-* Optimising the usage with tips, tricks and best practices in the configuration
+
+In this lab, you will:
+* Enable the environment as a EPCM application instance
 
 ### Prerequisites
 
-This lab assumes you have:
+Ensure that:
+* You have an Oracle Cloud EPM Enterprise subscription
+* You are a service administrator for the instance where you are going to create the FreeForm application
 
-* Understanding of Oracle Enterprise Performance Management (EPM)
-* EPM Enterprise Cloud subscription
-* Basic knowledge about Cloud EPM platform
-* Knowledge of PCM (Optional, but useful for the migration from PCM to EPCM)
+## Task 1: EPCM Application creation readiness
+
+1. Check whether you have Oracle Cloud EPM Enterprise subscription 
+  
+  When you login to your Cloud EPM environment, check whether you have an ability to pick from the below applications as shown. If you have all these applications available that means you have an **Enterprise** subscription. You will be selecting **EPCM** from the below.
+
+  
+
+2. Enable the instance as a EPCM application instance
+
+  Hit **Select** under EPCM.
+
+  
+
+  The instance will be created as a **EPCM** application instance.
+
+  
+
+  You are now ready to start the FreeForm application creation process. In the next 2 labs you will navigate options to create and configure EPCM applications as per your business needs.
 
 ## Learn More
 * [Oracle EPCM Admin Guide](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/index.html)
