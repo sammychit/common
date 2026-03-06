@@ -1,4 +1,4 @@
-# Introduction
+# Migrate from PCM to EPCM
 
 ## About this Workshop
 This section describes the process of migrating an existing Oracle Profitability and Cost Management (PCM) application to Enterprise Profitability and Cost Management (EPCM). 
