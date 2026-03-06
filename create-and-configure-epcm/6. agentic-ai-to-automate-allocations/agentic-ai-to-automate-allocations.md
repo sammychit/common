@@ -1,24 +1,22 @@
-# Introduction
+# Allocation Agent – Agentic AI
 
-## About this Workshop
-The workshop is a stepwise guide to create an EPCM (Enterprise Profitability and Costing Management) application to help facilitate costing and allocation  solutions in Oracle.
+## About Agentic AI
+This section introduces the concept of an Allocation Agent powered by Agentic AI. The Allocation Agent is designed to automate and optimize cost allocation processes by intelligently analyzing allocation drivers, identifying patterns, and suggesting improvements in allocation logic within an Enterprise Profitability and Cost Management (EPCM) environment.
 
 Estimated Workshop Time: -- hours -- minutes
 
 ### Objectives
-In this workshop, you will learn how to:
-* Create and configure an EPCM application from scratch
-* Migration from PCM to EPCM
-* Optimising the usage with tips, tricks and best practices in the configuration
+In this section, you will learn how to:
+* Understand the concept of Agentic AI in allocation processes
+* Identify how an Allocation Agent can assist in cost allocation modeling
+* Use AI-driven insights to improve allocation accuracy and efficiency
+* Automate repetitive allocation configuration and monitoring tasks
 
-### Prerequisites
+### Key Concepts
+Agentic AI refers to AI systems that can act autonomously to achieve defined goals by analyzing data, making decisions, and executing tasks with minimal human intervention.
 
-This lab assumes you have:
+In the context of EPCM, an Allocation Agent can support financial modeling and cost allocation processes by assisting administrators and analysts in designing and optimizing allocation models.
 
-* Understanding of Oracle Enterprise Performance Management (EPM)
-* EPM Enterprise Cloud subscription
-* Basic knowledge about Cloud EPM platform
-* Knowledge of PCM (Optional, but useful for the migration from PCM to EPCM)
 
 ## Learn More
 * [Oracle EPCM Admin Guide](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/index.html)
