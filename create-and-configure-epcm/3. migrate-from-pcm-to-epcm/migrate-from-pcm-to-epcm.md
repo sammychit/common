@@ -1,24 +1,23 @@
 # Introduction
 
 ## About this Workshop
-The workshop is a stepwise guide to create an EPCM (Enterprise Profitability and Costing Management) application to help facilitate costing and allocation  solutions in Oracle.
+This section describes the process of migrating an existing Oracle Profitability and Cost Management (PCM) application to Enterprise Profitability and Cost Management (EPCM). 
 
 Estimated Workshop Time: -- hours -- minutes
 
 ### Objectives
-In this workshop, you will learn how to:
-* Create and configure an EPCM application from scratch
-* Migration from PCM to EPCM
-* Optimising the usage with tips, tricks and best practices in the configuration
+In this section, you will learn how to:
+* Prepare a PCM application for migration
+* Export artifacts from PCM using Lifecycle Management (LCM)
+* Create an EPCM application in Oracle EPM Cloud
+* Validate data and allocation results after migration
 
-### Prerequisites
+### Migration Steps
+* Prepare the PCM Application: Review and clean up the PCM application by removing unused members, validating dimensions, and documenting allocation rules and calculation logic.
+* Download the Oracle migration template from PCM - 
 
-This lab assumes you have:
+### Best Practices
 
-* Understanding of Oracle Enterprise Performance Management (EPM)
-* EPM Enterprise Cloud subscription
-* Basic knowledge about Cloud EPM platform
-* Knowledge of PCM (Optional, but useful for the migration from PCM to EPCM)
 
 ## Learn More
 * [Oracle EPCM Admin Guide](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/index.html)
