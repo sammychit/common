@@ -16,7 +16,7 @@ In this lab, you will:
 
 Ensure that:
 * You have an Oracle Cloud EPM Enterprise subscription
-* You are a service administrator for the instance where you are going to create the FreeForm application
+* You are a service administrator for the instance where you are going to create the EPCM application
 
 ## Task 1: EPCM Application creation readiness
 
@@ -26,7 +26,7 @@ Ensure that:
 
   
 
-2. Enable the instance as a EPCM application instance
+2. Enable the instance as an EPCM application instance
 
   Hit **Select** under EPCM.
 
@@ -36,7 +36,7 @@ Ensure that:
 
   
 
-  You are now ready to start the FreeForm application creation process. In the next 2 labs you will navigate options to create and configure EPCM applications as per your business needs.
+  You are now ready to start the EPCM application creation process. In the next 2 labs you will navigate options to create and configure EPCM applications as per your business needs.
 
 ## Learn More
 * [Oracle EPCM Admin Guide](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/index.html)
