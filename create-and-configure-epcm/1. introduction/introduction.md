@@ -1,7 +1,7 @@
 # Introduction
 
 ## About this Workshop
-The workshop is a stepwise guide to create an EPCM (Enterprise Profitability and Costing Management) application to help facilitate costing and allocation  solutions in Oracle.
+This workshop provides a step-by-step guide to setting up an Oracle Enterprise Profitability and Cost Management (EPCM) application in Oracle Cloud EPM. Through hands-on labs, you will learn how to build an EPCM application from scratch, migrate from PCM, and enable agentic AI with practical implementation guidance. Key tips, design considerations, and best practices are included throughout to help you avoid common pitfalls and implement effectively.
 
 Estimated Workshop Time: -- hours -- minutes
 
@@ -9,6 +9,7 @@ Estimated Workshop Time: -- hours -- minutes
 In this workshop, you will learn how to:
 * Create and configure an EPCM application from scratch
 * Migration from PCM to EPCM
+* Enable Agentic AI
 * Optimising the usage with tips, tricks and best practices in the configuration
 
 ### Prerequisites
