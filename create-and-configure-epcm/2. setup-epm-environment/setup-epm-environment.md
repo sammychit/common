@@ -24,17 +24,17 @@ Ensure that:
   
   When you login to your Cloud EPM environment, check whether you have an ability to pick from the below applications as shown. If you have all these applications available that means you have an **Enterprise** subscription. You will be selecting **EPCM** from the below.
 
-  
+  ### Insert Screenshot 1 here
 
 2. Enable the instance as an EPCM application instance
 
   Hit **Select** under EPCM.
 
-  
+  ### Insert Screenshot 2 here
 
   The instance will be created as a **EPCM** application instance.
 
-  
+  ### Insert Screenshot 3 here
 
   You are now ready to start the EPCM application creation process. In the next 2 labs you will navigate options to create and configure EPCM applications as per your business needs.
 
