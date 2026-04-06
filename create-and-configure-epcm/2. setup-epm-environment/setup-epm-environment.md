@@ -43,5 +43,5 @@ Ensure that:
 * [Understanding Enterprise Profitability and Cost Management](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/about_enterprise_profitability_and_cost_management.html)
 
 ## Acknowledgements
-* **Author** - Sameer Chitragar, Senior Associate - Oracle Cloud & Digital, PwC
+* **Author** - Sameer Chitragar, Senior Associate - Digital Core Modernization, PwC
 * **Last Updated By/Date** - Sameer Chitragar, April 2026
