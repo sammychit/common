@@ -25,15 +25,15 @@ Ensure that:
 
 ### Task 2: Customize the Migration Template
 * Open the xml file, and update the following sections
-1. <dimensions>: Map source dimensions to target dimensions (used to build the application snapshot) - **Mandatory**
+1. **dimensions**: Map source dimensions to target dimensions (used to build the application snapshot) - **Mandatory**
+2. **modelpovs**: Convert groups of POV-specific rules into Models (used to build the application snapshot) - **Mandatory**
 
 Optionally, update the following fields if applicable. 
-2. <epcmappname>: Specify a name for your Enterprise Profitability and Cost Management application - **Optional**
-3. <duplicatememberprefixes>: Address the conversion of duplicate member names to unique member names (used to build the application snapshot) - **Optional**
-4. <rename_dimension_mapping>: (Optional) Rename dimensions to comply with naming restrictions in Enterprise Profitability and Cost Management or because you want to change the name in the new application.
-5. <rename_member_mapping>: (Optional) Rename members to comply with naming restrictions in Enterprise Profitability and Cost Management or because you want to change the name in the new application.
-6. <modelpovs>: Convert groups of POV-specific rules into Models (used to build the application snapshot)
-7. <datapovs>: (Optional) Convert existing POVs of data to data compatible with your new Enterprise Profitability and Cost Management application (used to create the data extract)
+1. **epcmappname**: Specify a name for your Enterprise Profitability and Cost Management application.
+2. **duplicatememberprefixes**: Address the conversion of duplicate member names to unique member names (used to build the application snapshot).
+3. **rename_dimension_mapping**: Rename dimensions to comply with naming restrictions in Enterprise Profitability and Cost Management or because you want to change the name in the new application.
+4. **rename_member_mapping**: Rename members to comply with naming restrictions in Enterprise Profitability and Cost Management or because you want to change the name in the new application.
+5. **datapovs**: Convert existing POVs of data to data compatible with your new Enterprise Profitability and Cost Management application (used to create the data extract)
 
 ### Task 3: Upload the customized template to your Profitability and Cost Management inbox
 1. Log in as a Service Administrator to your Profitability and Cost Management instance.
@@ -41,7 +41,7 @@ Optionally, update the following fields if applicable.
 3. In the vertical tabs on the left side, select **File Explorer** which would be the fourth option and click on Upload.
 4. Upload the modified template and select folder location as **Inbox** and click on OK.
 
-### Task 4: 
+### Task 4: Validate the migration template and perform the migration
 1. On the home screen, click on **Application**, then click on **Migrate to EPCM** in the cluster.
 
 * Note that two files would have been generated. 1) Application Snapshot, 2) Data Extract. The following sections of the migration templates support the mappings required to generate migration files from your current application
