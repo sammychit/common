@@ -39,8 +39,9 @@ Ensure that:
   You are now ready to start the EPCM application creation process. In the next 2 labs you will navigate options to create and configure EPCM applications as per your business needs.
 
 ## Learn More
-* [Oracle EPCM Admin Guide](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/index.html)
+* [Creating a Cloud EPM Enterprise Service Application](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/preconfiguring_your_environment.html)
+* [Understanding Enterprise Profitability and Cost Management](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/about_enterprise_profitability_and_cost_management.html)
 
 ## Acknowledgements
 * **Author** - Sameer Chitragar, Senior Associate - Oracle Cloud & Digital, PwC
-* **Last Updated By/Date** - Sameer Chitragar, February 2025
+* **Last Updated By/Date** - Sameer Chitragar, April 2026
