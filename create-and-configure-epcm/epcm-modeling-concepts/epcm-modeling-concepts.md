@@ -2,73 +2,74 @@
 
 ## Introduction
 
-This short reference defines the modeling terms used in the Path A modeling lab, in Path B validation, and in the optional PCM Agent section. There are no steps to perform. It is intentionally brief; the Oracle documentation links at the end cover each object in full.
+This is a short read, not a set of steps. It explains the terms used in the Path A modeling lab, in Path B validation, and in the PCM Agent section. The Oracle links at the end go deeper.
 
 Estimated Lab Time: 10 minutes
 
-## Cubes
+## Cube
 
-An EPCM application stores data in Oracle Essbase cubes. Calculations run in the **calculation cube**; results are also available in a **reporting cube**. You choose the cube when you create a dimension and when you load data.
+A **cube** is the database that stores the numbers and does the maths. EPCM has a **calculation** cube (where rules run) and a **reporting** cube. You pick the cube when you create a dimension and when you load data.
 
 ## Dimensions
 
-* **Required business dimensions:** Account, Entity, Period, Years, Scenario, Version. Every EPCM application has these.
-* **System dimensions:** **PCM_Rule** (holds every allocation and custom rule, so each rule's result is tracked separately; its **`PCM_No Rule`** member holds data that did not come from a rule, such as what you load) and **PCM_Balance** (keeps the parts of a number separate). These are built and maintained for you.
+A **dimension** is a list of things you analyse by. A **member** is one item in it. Members sit in a **parent / child** tree; a parent totals its children.
 
-  The main **PCM_Balance** members you will see:
+* **Required dimensions:** Account, Entity, Period, Years, Scenario, Version. Every EPCM application has them.
+* **System dimensions** (EPCM manages these):
+  * **PCM_Rule** &ndash; one member per rule, so each rule's effect is tracked on its own. Its **`PCM_No Rule`** member holds anything not made by a rule, such as data you load.
+  * **PCM_Balance** &ndash; keeps the parts of a number apart:
 
-  | Member | Holds |
-  | --- | --- |
-  | `PCM_Input` | The data you loaded |
-  | `PCM_Adjustment In` / `PCM_Adjustment Out` | Amounts added or removed by custom calculation rules |
-  | `PCM_Allocation In` / `PCM_Allocation Out` | Amounts moved in or out by allocation rules |
-  | `PCM_Net Balance` | The running total of all of the above &ndash; the number rules read and reports show |
-* **Currency dimension:** created only if you choose multicurrency when creating the application.
-* **Custom dimensions:** any additional dimensions your model needs (for example, an activity or a product dimension). You create and populate these yourself.
+    | Member | Holds |
+    | --- | --- |
+    | `PCM_Input` | What you loaded |
+    | `PCM_Adjustment In` / `PCM_Adjustment Out` | Amounts a custom rule added or removed |
+    | `PCM_Allocation In` / `PCM_Allocation Out` | Amounts an allocation rule moved in or out |
+    | `PCM_Net Balance` | The running total &ndash; the number rules read and reports show |
+* **Currency dimension:** exists only if you chose multicurrency when creating the application.
+* **Custom dimensions:** extra dimensions your model needs (for example, Activity). You create and fill these yourself.
 
 ## Point of View (POV)
 
-A **POV** is one member each from **Years**, **Period**, **Scenario**, and **Version** &mdash; for example `FY24 / Jan / Actual / Working`. You calculate a model *for a POV*. A POV must exist and have the status **Draft** before it can be calculated.
+A **POV** is one member each from **Years**, **Period**, **Scenario**, and **Version** &ndash; for example `FY24 / Jan / Actual / Working`. You calculate a model **for a POV**. A POV must have the status **Draft** to be calculated.
 
 ## Model
 
-A **model** is a container for rules. When a model runs against a POV, it layers results on top of the source data without changing it, so any rule, rule set, or the whole model can be re-run or undone. You can keep separate models for different purposes, such as one for actuals and one for plan.
+A **model** holds the calculation logic. Running it lays results on top of your loaded numbers without changing them, so you can re-run or undo it. You can keep one model for actuals and another for plan.
 
 ## Rule set
 
-A **rule set** is an ordered group of related rules inside a model. A **sequence** number sets the order. A rule set runs in one of three modes:
+A **rule set** is an ordered group of rules inside a model. A **sequence** number sets the order. It runs in one of three modes:
 
 * **Serial** &ndash; one rule at a time, in sequence order
-* **Parallel** &ndash; rules that share a sequence number run at the same time
-* **Iterative** &ndash; the rule set repeats to resolve circular (reciprocal) allocations
+* **Parallel** &ndash; rules with the same sequence number run together
+* **Iterative** &ndash; the set repeats to settle circular allocations
 
 ## The two kinds of rule
 
-**Allocation rule** &ndash; moves amounts from one place to another. It has four parts:
+**Allocation rule** &ndash; moves an amount from one place to another. Four parts:
 
 | Part | Meaning |
 | --- | --- |
-| **Source** | The intersection that holds the amount to allocate. |
-| **Destination** | The intersections that receive the allocated amount. |
-| **Driver basis** | How the amount is split. Each destination receives *its driver value / the total driver value*. Or the amount is split evenly. |
-| **Offset** | A balancing entry (the opposite sign of the allocated amount) so the source nets to zero. Defaults to the source location. |
+| **Source** | Where the amount starts. |
+| **Destination** | Where it goes. |
+| **Driver** | How it splits. Each destination gets *its driver value / the total driver value*. Or it splits evenly. |
+| **Offset** | An equal, opposite entry so the source nets to zero. Sits at the source by default. |
 
-**Custom calculation rule** &ndash; writes a value using a formula instead of moving amounts. The formula has the form `Result := Formula;`. It is used for adjustments, rates, and derived statistics.
+**Custom calculation rule** &ndash; writes a value with a formula (`Result := Formula;`) instead of moving amounts. Used for adjustments, rates, and derived statistics.
 
-## Validation and calculation
+## Validate and calculate
 
-* **Model validation** checks the rules in a model for errors before you calculate. Warnings identify rules that will still run but do not follow best practice.
-* **Calculation** runs a model's enabled rules for a selected Draft POV. You can clear previously calculated data first, run all rules or a subset, and monitor progress in **Jobs**.
-* After calculation you inspect results with data forms, **Rule Balancing**, and **Calculation Analysis**.
+* **Model validation** checks the rules for errors before you calculate. Warnings are rules that run but are not best practice.
+* **Calculation** runs a model's rules for a Draft POV. You can clear old results first and run all rules or some. Watch progress in **Jobs**.
+* Check results with data forms, **Rule Balancing**, and **Calculation Analysis**.
 
 ## How you build these
 
-* In **Path A Lab 4** you create the model, rule set, and rules by hand in **Modeling &rarr; Models** and **Modeling &rarr; Designer**, then validate and calculate.
-* In the **optional PCM Agent section** you can create and run the same objects with natural-language commands. The agent creates the *definitions*; a working allocation still needs valid source, destination, driver, offset, and/or formula selections.
+* In **Path A Lab 4** you build the model, rule set, and rules by hand in **Modeling &rarr; Models** and **Modeling &rarr; Designer**, then validate and calculate.
+* In the **PCM Agent section** you can do the same with typed commands. The agent creates the definitions; a working allocation still needs its source, destination, driver, offset, or formula filled in.
 
 ## Learn More
 
-* [About Models (Oracle EPCM documentation)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/about_models.html)
 * [Overview of the PCM_Rule and PCM_Balance System Dimensions (Oracle EPCM documentation)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/overview_of_pcm_rule_and_pcm_balance.html)
 
 ## Acknowledgements

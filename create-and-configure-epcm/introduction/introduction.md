@@ -2,46 +2,46 @@
 
 ## About This Workshop
 
-This workshop is a practical, beginner-friendly guide to adopting **Oracle Enterprise Profitability and Cost Management (EPCM)** on an Oracle Cloud EPM Enterprise environment.
+This workshop helps a first-time user set up **Oracle Enterprise Profitability and Cost Management (EPCM)** on an Oracle Cloud EPM Enterprise environment.
 
-Oracle's product documentation explains each EPCM activity on its own detailed page. This workshop gives you an **ordered route** through the EPCM lifecycle so you can move from a brand-new, empty environment to a working application that calculates results, without having to work out the order of steps yourself.
+Oracle's documentation covers each step on its own page. This workshop puts the steps in order, so you can go from a new, empty environment to an application that calculates results.
 
-### A few words before you start (plain language)
+### Words you will meet
 
-* **Cloud EPM** &ndash; Oracle's cloud platform for finance planning, close, and analysis. Your subscription lets you run one Oracle application, called a **business process**, per environment.
-* **EPCM (Enterprise Profitability and Cost Management)** &ndash; the business process this workshop sets up. It works out **what things cost** and **how profitable they are** by spreading shared costs onto the products, services, or departments that cause them.
+* **Cloud EPM** &ndash; Oracle's cloud platform for finance. Each environment runs one Oracle application, called a **business process**.
+* **EPCM** &ndash; the business process you set up here. It works out what things cost and how profitable they are, by spreading shared costs onto the products, services, or departments that cause them.
 * **PCM (Profitability and Cost Management)** &ndash; an older, separate Oracle business process. If you already run PCM, Path B moves it to EPCM.
-* **Allocation** &ndash; the act of spreading an amount from where it was recorded to where it belongs, using a **driver** (a basis such as headcount or floor area).
-* **Metadata** &ndash; the lists and hierarchies you analyse by (accounts, departments, periods). **Data** &ndash; the numbers stored against them.
-* **Model, rule, POV** &ndash; a **model** holds the calculation logic; a **rule** is one calculation step; a **POV (point of view)** is the year/period/scenario/version combination you calculate. These are explained fully in the *EPCM Modeling Concepts* reference.
+* **Allocation** &ndash; spreading an amount from where it was recorded to where it belongs, using a **driver** such as headcount.
+* **Metadata** &ndash; the lists you analyse by (accounts, departments, periods). **Data** &ndash; the numbers held against them.
+* **Model, rule, POV** &ndash; a **model** holds the calculation logic; a **rule** is one calculation step; a **POV (point of view)** is the year, period, scenario, and version you calculate. The *EPCM Modeling Concepts* reference explains these.
 
-You start from one of two situations:
+### Choose your path
 
-* You have **no EPCM application** and want to build one. &rarr; **Path A**
-* You have an **existing legacy Profitability and Cost Management (PCM) application** and want to move it to EPCM. &rarr; **Path B**
+* You have **no EPCM application** and want to build one &rarr; **Path A**.
+* You have an **existing PCM application** and want to move it to EPCM &rarr; **Path B**.
 
-An optional final section shows the **PCM Agent**, a Generative AI assistant that can create and run modeling artifacts from natural-language instructions after an EPCM application exists.
+Paths A and B are alternatives. You do only one.
+
+The **PCM Agent** (an optional section) is an AI assistant that builds and runs modeling items from typed instructions, once an application exists. It is a helper, not the point of the workshop.
 
 Estimated Workshop Time: 10 minutes (this introduction)
 
 ## What You Will Learn
 
-* How to choose the right adoption path
-* How to enable the EPCM business process on your environment
-* **Path A:** create a new application, configure dimensions, load supplied metadata and data, build a model / rule set / rule, validate, and calculate
-* **Path B:** prepare and generate the PCM migration template, validate and run the migration, and complete post-migration tasks
-* The essential EPCM configuration and modeling objects
-* **Optional:** enable and use the PCM Agent
+* How to pick the right path
+* How to switch the environment on for EPCM
+* **Path A:** create an application, set up dimensions, load the supplied metadata and data, build a model and rules, validate, and calculate
+* **Path B:** prepare the migration template, run the migration, and finish the post-migration work
+* The core EPCM building blocks
+* **Optional:** turn on and use the PCM Agent
 
 ## Which Path Is Right for You?
 
 | Your situation | Follow | Labs |
 | --- | --- | --- |
-| I have an EPM Enterprise subscription but **no EPCM application yet** | **Path A: Create a New EPCM Application** | Common Lab 1, then Path A Labs 2&ndash;4 |
-| I have an **existing legacy PCM application** to move to EPCM | **Path B: Migrate a Legacy PCM Application** | Common Lab 1, then Path B Labs 2&ndash;4 |
-| I **already have an EPCM application** (built here, migrated, or the BksML50 sample) and want to try the AI assistant | **Optional: Use PCM Agent** | Optional Labs |
-
-Path A and Path B are **alternatives**. You do not need to do both. A learner creating a new application does **not** perform migration steps, and a learner migrating legacy PCM does **not** build an application from scratch.
+| I have a subscription but **no EPCM application yet** | **Path A** | Common Lab 1, then Path A Labs 2&ndash;4 |
+| I have an **existing PCM application** to move | **Path B** | Common Lab 1, then Path B Labs 2&ndash;4 |
+| I **already have an EPCM application** and want to try the AI assistant | **Optional PCM Agent** | Optional Labs |
 
 ## Workshop Structure
 
@@ -58,43 +58,41 @@ Path A and Path B are **alternatives**. You do not need to do both. A learner cr
 | Optional | Optional Lab: Enable the PCM Agent | 10 minutes |
 | Optional | Optional Lab: Use the PCM Agent | 20 minutes |
 
-Approximate end-to-end time after your environment is available: **Path A about 2 to 2.5 hours**, **Path B about 2 to 2.5 hours** (excluding source-application cleanup and migration troubleshooting). The optional PCM Agent section adds **20&ndash;30 minutes**.
+After your environment is ready, each path takes about **2 to 2.5 hours**. The optional PCM Agent section adds **20 to 30 minutes**.
 
 ## Prerequisites
 
 **All paths:**
 
 * An **Oracle Cloud EPM Enterprise** subscription
-* **Service Administrator** access to the environment
-* Familiarity with basic Cloud EPM navigation (Home page, Application cluster, Jobs, File Explorer)
+* **Service Administrator** access
+* You can find your way around Cloud EPM (Home page, the Application area, Jobs, File Explorer)
 
-**Path A also requires:**
+**Path A also needs:**
 
-* An environment with **no application created yet**
-* The supplied example metadata and data files (included with Lab 3, in its `files/` folder)
+* An environment with **no application yet**
+* The example files supplied with Lab 3 (in its `files/` folder)
 
-**Path B also requires:**
+**Path B also needs:**
 
-* A **source** environment that contains the legacy PCM application you want to migrate, with Service Administrator access
-* A **separate target** environment with the **Enterprise Profitability and Cost Management** business process enabled and **no application created yet**
-* Time to review and clean up the source PCM application before migrating
+* A **source** environment that holds the PCM application to move, with Service Administrator access
+* A **separate target** environment, switched on for EPCM, with **no application yet**
+* Time to tidy up the source PCM application first
 
-**Optional PCM Agent section also requires:**
+**Optional PCM Agent section also needs:**
 
 * An existing EPCM application (from Path A, Path B, or the BksML50 sample)
 * An environment on the **April 2026 (26.04)** update or later, on Oracle Cloud Infrastructure (OCI), in a region where **Generative AI** is available
-* English-language use; all generated commands are reviewed before they run
+* English input; you review every command before it runs
 
-## Notes on Scope
+## Scope
 
-This workshop stays **generic**. It explains EPCM platform concepts and configuration mechanics in neutral terms and does not model a specific company or industry. The supplied example files are small, neutral training data. Your organization decides its own source, destination, driver, offset, and custom calculation logic; where this workshop shows specific selections, they are clearly labeled as illustrative choices for the training data only.
-
-Screenshot placeholders in these labs describe what to capture. The workshop author adds the images.
+This workshop stays generic. It explains EPCM in neutral terms and does not model a real company. The example files hold small, made-up training numbers. Your organisation decides its own source, destination, driver, offset, and formulas; where a lab shows specific choices, they are marked as examples for the training data only.
 
 ## Learn More
 
 * [Oracle Cloud EPM Enterprise Profitability and Cost Management documentation](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/index.html)
-* [Migrating from Profitability and Cost Management to Enterprise Profitability and Cost Management (tutorial)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/tutorial-migrate-pcm-to-epcm/index.html)
+* [Migrating from Profitability and Cost Management to Enterprise Profitability and Cost Management (Oracle tutorial)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/tutorial-migrate-pcm-to-epcm/index.html)
 
 ## Acknowledgements
 

@@ -2,34 +2,32 @@
 
 ## Introduction
 
-In this lab you customize the migration template, upload it to the PCM **inbox** (the server folder the migration reads from), run a **standalone validation** that checks the template without changing anything, and then either **Generate Snapshot** (produce the files and move them yourself) or **Migrate to EPCM** (Oracle transfers and imports them for you).
+You edit the migration template, upload it to the PCM **inbox** (the folder the migration reads from), run a **validation** that checks it without changing anything, then either **Generate Snapshot** (make the files and move them yourself) or **Migrate to EPCM** (Oracle moves and imports them for you).
 
-**Why this matters:** validation is safe and repeatable; the actual migration creates the one application your target environment is allowed to hold. Validate until it is clean before you migrate.
+**Why this matters:** validation is safe and repeatable; the migration itself creates the one application the target environment can hold. Validate until it is clean, then migrate.
 
 Estimated Lab Time: 45 minutes
 
 ### Objectives
 
-In this lab, you will:
-
-* Customize the mandatory and optional template sections
+* Customize the required and optional template sections
 * Upload the template to the PCM inbox
-* Validate the template and review the Preview and Validate Report
-* Generate the application snapshot and data extract, or run the direct migration
-* Know how to safely repeat a migration
+* Validate the template and read the Preview and Validate Report
+* Generate the snapshot and data extract, or run the direct migration
+* Repeat a migration safely if needed
 
 ### Prerequisites
 
-* You completed **Path B Lab 2** and have the generated `<YourPCMApplicationName>_Export.xml`
+* You finished **Path B Lab 2** and have `<YourPCMApplicationName>_Export.xml`
 * The target EPCM environment is preconfigured and has no application
 
 ## Task 1: Customize the template
 
-Edit the XML file. Keep a copy of each version you upload.
+Edit the XML file. Keep a copy of every version you upload.
 
-### Mandatory sections
+### Required sections
 
-1. **`dimensions`** &mdash; for each of `account_dimension`, `entity_dimension`, `year_dimension`, `period_dimension`, `scenario_dimension`, `version_dimension` (and `currency_dimension` if multicurrency), set `pcm_dimname` to the source dimension name and complete the `member_mapping` entries (map the source top member to the EPCM top member). Example shape:
+1. **`dimensions`** &ndash; for each of `account_dimension`, `entity_dimension`, `year_dimension`, `period_dimension`, `scenario_dimension`, `version_dimension` (and `currency_dimension` if multicurrency): set `pcm_dimname` to the source dimension name, and complete `member_mapping` (map the source top member to the EPCM top member). Example:
 
   ```xml
   <account_dimension>
@@ -43,7 +41,7 @@ Edit the XML file. Keep a copy of each version you upload.
 
   For `period_dimension`, set the frequency and fiscal start to match the source calendar.
 
-2. **`modelpovs`** &mdash; for each group of POV-specific rules, add a `pov` entry mapping the source POV to an EPCM model name:
+2. **`modelpovs`** &ndash; for each group of POV-based rules, add a `pov` entry mapping the source POV to an EPCM model name:
 
   ```xml
   <modelpovs>
@@ -56,98 +54,84 @@ Edit the XML file. Keep a copy of each version you upload.
 
 ### Optional sections (edit only if needed)
 
-* **`epcmappname`** &mdash; up to 8 characters.
-* **`duplicatememberprefixes`** &mdash; add a `dimension` block with `name`, `duplicateprefix`, and `prefix_all` to make duplicate names unique (EPCM requires unique member names).
-* **`rename_dimension_mapping`** / **`rename_member_mapping`** &mdash; `artifact_name` blocks with `pcm_name` and `epcm_name`.
-* **`datapovs`** &mdash; `pov` blocks with `srcpov`, `destpov` (members in the order Years, Period, Scenario, Version), and `include_calculated_data`.
+* **`epcmappname`** &ndash; up to 8 characters.
+* **`duplicatememberprefixes`** &ndash; a `dimension` block with `name`, `duplicateprefix`, `prefix_all`, to make duplicate names unique (EPCM needs unique member names).
+* **`rename_dimension_mapping`** / **`rename_member_mapping`** &ndash; `artifact_name` blocks with `pcm_name` and `epcm_name`.
+* **`datapovs`** &ndash; `pov` blocks with `srcpov`, `destpov` (members in the order Years, Period, Scenario, Version), and `include_calculated_data`.
 
-> **Note on reserved names:** member names beginning with prefixes reserved by other EPM business processes (for example `FCCS_`, `OEP_`, `OWP_`, `OPF_`, `OCX_`, `PCM_`, `TRCS_`) are handled specially during migration. The validation step flags names that must be prefixed or renamed. The system dimensions are renamed automatically: `RULE` becomes `PCM_Rule` and `BALANCE` becomes `PCM_Balance`.
+> **Reserved names:** member names starting with prefixes used by other EPM business processes (for example `FCCS_`, `OEP_`, `OWP_`, `OPF_`, `OCX_`, `PCM_`, `TRCS_`) are handled specially. Validation flags names to prefix or rename. The system dimensions are renamed for you: `RULE` &rarr; `PCM_Rule`, `BALANCE` &rarr; `PCM_Balance`.
 
 ## Task 2: Upload the template to the PCM inbox
 
-1. On the source PCM Home page, click **Application**, then click the **Application** icon.
+**Why:** the migration reads the template from the inbox, not from your computer.
 
-2. Select the **File Explorer** vertical tab.
-
+1. On the source PCM Home page, click **Application**, then the **Application** icon.
+2. Select the **File Explorer** tab.
 3. Click **Upload**.
-
-4. For **File Name**, browse to the customized `<YourPCMApplicationName>_Export.xml`.
-
+4. For **File Name**, browse to your edited `<YourPCMApplicationName>_Export.xml`.
 5. For **Folder Location**, select **Inbox**.
+6. Click **OK**. If asked, overwrite the existing file.
 
-6. Click **OK**. If prompted that the file exists, choose to overwrite.
+> **Tip:** you can also upload with EPM Automate: `epmautomate uploadFile "<FILE_NAME>" profitinbox`
 
-  > **Tip:** You can also upload with EPM Automate: `epmautomate uploadFile "<FILE_NAME>" profitinbox`
-
-  > **Screenshot placeholder:** _File Explorer Upload dialog with Folder Location set to Inbox._
+**Check:** the file appears in **File Explorer** under **Inbox**.
 
 ## Task 3: Validate the template
 
+**Why:** validation finds problems safely, before anything is created.
+
 1. On the source PCM Home page, click **Migrate to EPCM**.
-
 2. Click **Validate**.
+3. **Migration Status** shows **Success** or **Failed**. If it fails, click the **Failed** link for the row-level errors (common causes: period or year format, dimension order, duplicate members needing a prefix).
+4. Fix the template, re-upload to the **Inbox** (Task 2, overwrite), and validate again. Repeat until it succeeds.
 
-3. The **Migration Status** shows **Success** or **Failed** for the validation step. If it fails, click the **Failed** link for the row-level errors (common causes: period or year format, dimension order, duplicate members that need a prefix).
+**Check:** **Migration Status** shows **Success** for validation and no **Failed** links remain.
 
-4. Fix the template, re-upload it to the **Inbox** (Task 2, overwrite), and validate again. Repeat until validation succeeds.
+## Task 4: Read the Preview and Validate Report
 
-**Success check:** the **Migration Status** shows **Success** for the validation step and no **Failed** links remain.
-
-  > **Screenshot placeholder:** _Migration Status page showing a successful Validate result._
-
-## Task 4: Review the Preview and Validate Report
+**Why:** it shows exactly what the migration will do before you run it.
 
 1. Click **Preview And Validate Report**.
-
 2. Save `Preview_and_Validation_Report.txt` and open it.
+3. Review: duplicate members between PCM and EPCM, prefixes applied, renamed dimensions and members, the POV groups that become models, rule counts per model, and any changed custom calculation formulas.
 
-3. Review: duplicate members between PCM and EPCM, prefix mappings applied, renamed dimensions and members, the POV groups that become models, rule counts per model, and any modified custom calculation formulas.
+**Check:** the report matches what you expect from your template edits.
 
-## Task 5: Choose Generate Snapshot or direct Migrate to EPCM
+## Task 5: Generate Snapshot or Migrate directly
 
-### Option A &ndash; Generate Snapshot (two-step, manual transfer)
+### Option A &ndash; Generate Snapshot (you move the files)
 
 1. On the **Migrate to EPCM** page, click **Generate Snapshot**.
-
-2. When it completes, the source **outbox** contains three files:
+2. When it finishes, the source **outbox** holds three files:
 
   | File | Contents |
   | --- | --- |
-  | `Migrated_<ApplicationName>_Export_Data.txt` | The data extract, converted to EPCM (Essbase) format. Load it later via **Application &rarr; Overview &rarr; Import Data**. |
+  | `Migrated_<ApplicationName>_Export_Data.txt` | The data extract, in EPCM (Essbase) format. Load it later via **Application &rarr; Overview &rarr; Import Data**. |
   | `<ApplicationName>_<ExportDate>_<ExportTime>.zip` | The EPCM application snapshot. |
-  | `<ApplicationName>_Export_Data.log` | The migration process log, for troubleshooting. |
+  | `<ApplicationName>_Export_Data.log` | The migration log, for troubleshooting. |
 
-3. Download the files. On the **target** EPCM environment, upload the snapshot, use **Migrate** on the Enterprise Profitability and Cost Management landing page to create the application from it, then import the data extract.
+3. Download the files. On the **target** environment, upload the snapshot, use **Migrate** on the EPCM landing page to create the application from it, then import the data extract.
 
-**Success check (either option):** the target environment now has an EPCM application, and **Migration Status** shows **Success** for the snapshot/import steps.
-
-### Option B &ndash; Migrate to EPCM (direct)
+### Option B &ndash; Migrate to EPCM (Oracle moves the files)
 
 1. On the **Migrate to EPCM** page, click **Migrate to EPCM**.
-
-2. In the dialog, enter the target **Target URL**, the Service Administrator **username**, and **password**.
-
+2. Enter the target **Target URL**, Service Administrator **username**, and **password**.
 3. Click **Migrate**.
+4. The process validates the template, builds the snapshot and data export, connects to the target, uploads them, and imports the application and data. **Migration Status** shows Success or Failed per step; click a failed step for details.
 
-4. The process validates the template, generates the snapshot and data export into the outbox, connects to the target, uploads the snapshot and data, imports the application snapshot, and imports the data. The **Migration Status** shows Success or Failed for each step; click a failed step for details.
+**Check (either option):** the target environment now has an EPCM application, and **Migration Status** shows **Success** for the snapshot and import steps.
 
-  > **Screenshot placeholder:** _Migrate to EPCM dialog with Target URL and credentials, and the step-by-step Migration Status._
+## Task 6: Repeat a migration safely
 
-## Task 6: Safely repeat a migration
-
-If validation or import failed, or you need to migrate again with a changed template:
+If a step failed, or you want to migrate again with a changed template:
 
 1. Sign in to the **target** EPCM environment as a Service Administrator.
-
 2. Click **Application**, then **Overview**.
-
-3. Click **Actions**, then **Inbox/Outbox Explorer**. If `Migrated_<ApplicationName>_Export_Data.txt` is present, select it, use its **Actions** column, click **Delete**, and confirm **Yes**.
-
-4. Click **Close** to return to Application Overview. Click **Actions**, then **Remove Application**, and confirm **Yes**.
-
+3. Click **Actions**, then **Inbox/Outbox Explorer**. If `Migrated_<ApplicationName>_Export_Data.txt` is there, select it, open its **Actions**, click **Delete**, confirm **Yes**.
+4. Click **Close**. Click **Actions**, then **Remove Application**, confirm **Yes**.
 5. Edit the template, re-upload it to the source PCM **Inbox** (overwrite), run **Validate** again, then repeat Task 5.
 
-  > **Screenshot placeholder:** _Inbox/Outbox Explorer on the target with the migrated data file selected for deletion, and the Remove Application action._
+**Check:** the target has no application and no leftover migrated data file, ready for a clean re-run.
 
 ## Task 7: Next
 
