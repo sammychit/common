@@ -1,0 +1,10 @@
+Account,Jan,Point-of-View,Data Load Cube Name
+Rent Expense,120000,"SVC-1,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+IT Expense,90000,"SVC-2,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Utilities Expense,30000,"SVC-1,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Headcount,20,"OPS-1,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Headcount,50,"OPS-2,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Headcount,30,"OPS-3,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Floor Area,3000,"OPS-1,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Floor Area,5000,"OPS-2,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC
+Floor Area,2000,"OPS-3,FY24,Actual,Working,NoActivity,PCM_Input,PCM_No Rule",PCM_CLC

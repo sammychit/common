@@ -1,0 +1,8 @@
+Account,Parent,Alias: Default,Data Storage
+Total Cost Pool,All Accounts,Total Cost Pool,
+Rent Expense,Total Cost Pool,Rent Expense,Never Share
+IT Expense,Total Cost Pool,IT Expense,Never Share
+Utilities Expense,Total Cost Pool,Utilities Expense,Never Share
+Training Statistics,Total Cost Pool,Training Statistics,
+Headcount,Training Statistics,Headcount,Never Share
+Floor Area,Training Statistics,Floor Area,Never Share
