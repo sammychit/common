@@ -1,77 +1,100 @@
-# Enable the Enterprise Profitability and Cost Management Business Process
+# Common Lab 1: Enable the EPCM Business Process
 
 ## Introduction
 
-Before you can build an application, an Oracle Cloud EPM environment must be enabled as an **Enterprise Profitability and Cost Management** business process. In this lab you confirm your subscription and readiness, then use the **EPM Enterprise Cloud Service landing page** to select the Enterprise Profitability and Cost Management business process and choose how the application will be created.
+### What is EPCM?
 
-Estimated Lab Time: -- minutes
+**Enterprise Profitability and Cost Management (EPCM)** is one of the applications you can run in Oracle Cloud EPM. It helps an organisation work out **what things really cost** and **how profitable they are**, by spreading shared costs (rent, IT, utilities, support teams) onto the products, services, customers, or departments that actually cause them. That spreading is called **allocation**.
+
+### What is a "business process", and what does "preconfigure" mean?
+
+An Oracle Cloud EPM **environment** runs **one** Oracle application type at a time &mdash; called a **business process**. Before you can use EPCM, you switch the environment on for it. Oracle calls this **preconfiguring** the environment.
+
+Preconfiguring is **not** the same as creating an application:
+
+* **Preconfiguring** installs the EPCM framework on the environment. It takes about **20 minutes**, and the environment is **not available** while it runs.
+* **Creating an application** is a later, separate step where *your* structure and data go in. Path A builds one from scratch; Path B builds one from a migrated PCM snapshot.
+
+### Why this lab matters
+
+This is the foundation for everything that follows, and it is mostly a **one-way** step: an environment holds **only one application**, and once you create that application you cannot return to this landing page without resetting the whole environment. Take it slowly and confirm each screen.
+
+Estimated Lab Time: 25 minutes
 
 ### Objectives
 
 In this lab, you will:
 
-* Confirm that your environment is an EPM Enterprise Cloud Service instance
-* Select **Enterprise Profitability and Cost Management** on the landing page
-* Understand the three ways to create the application: **Create** (sample), **Start** (new), and **Migrate** (from a snapshot)
+* Open the EPM Enterprise landing page
+* Preconfigure the environment for Enterprise Profitability and Cost Management, using Oracle's current two-step Select flow
+* See the three ways to create the application (**CREATE**, **START**, **MIGRATE**) and know which one your path uses
 
 ### Prerequisites
 
-Ensure that:
+* An Oracle Cloud EPM Enterprise subscription
+* **Service Administrator** access (you have this if you can sign in and reach the landing page)
+* An environment where **no application has been created yet**
 
-* You have an **EPM Enterprise Cloud Service** subscription
-* You are a **Service Administrator** for the instance on which the application will be created
-* The instance is **new** &mdash; no business process/application has been created on it yet
+## Task 1: Open the EPM Enterprise landing page
 
-> **Note:** An EPM Enterprise Cloud Service environment allows you to create **only one** application. After you initiate creation of an application, you cannot return to the landing page. To create a different application, you must first reset the environment to its original state.
+1. Sign in to your environment.
 
-## Task 1: Confirm EPM Enterprise readiness
+2. Because no application exists yet, the **EPM Enterprise landing page** opens. It shows a card for each business process you could create (Planning, Financial Consolidation and Close, Profitability and Cost Management, and others).
 
-1. Sign in to your Cloud EPM environment as a Service Administrator.
+**Expected outcome:** you see the landing page with the business process cards.
 
-2. If no application has been created, the **EPM Enterprise Cloud Service landing page** is displayed. It presents a card for each business process you can create (for example, Planning, Financial Consolidation and Close, Tax Reporting, Account Reconciliation, Profitability and Cost Management, Enterprise Profitability and Cost Management, Narrative Reporting, and Enterprise Data Management). The availability of these business processes indicates an **Enterprise** subscription.
+**Success check:** you can see a card labelled **Profitability and Cost Management**.
 
-  > **Screenshot placeholder:** _EPM Enterprise Cloud Service landing page showing the business process cards, with the Enterprise Profitability and Cost Management card visible._
+  > **Screenshot placeholder:** _EPM Enterprise landing page showing the business process cards, with the Profitability and Cost Management card visible._
 
-## Task 2: Select the Enterprise Profitability and Cost Management business process
+## Task 2: Start preconfiguration
 
-1. On the landing page, locate the **Enterprise Profitability and Cost Management** card and click **Select**.
+Oracle's current flow starts from the **Profitability and Cost Management** card (EPCM shares this starting point).
 
-2. Click **OK** to start pre-configuring the environment for this business process.
+1. On the **Profitability and Cost Management** card, click **Select**.
 
-  * The environment is **not available** during pre-configuration, which takes approximately 20 minutes.
+2. When prompted, click **OK** to start preconfiguration.
 
-  > **Screenshot placeholder:** _Confirmation dialog after clicking Select, and the pre-configuration in-progress message._
+**Why:** clicking **OK** begins the ~20‑minute preconfiguration. The environment is unavailable during this time. Nothing you do here creates an application yet.
 
-3. When pre-configuration completes, the **Enterprise Profitability and Cost Management** business process landing page is displayed with the following options:
+**Expected outcome:** a message tells you preconfiguration has started; the environment becomes temporarily unavailable.
 
-  | Option | What it does |
-  | --- | --- |
-  | **Create** | Creates the ready-to-use **sample application** (BksML50) with artifacts and data. |
-  | **Start** | Launches the **Create Application** wizard to build a new, empty application. |
-  | **Migrate** | Creates the application by importing a previously uploaded **application snapshot** (used for the PCM &rarr; EPCM migration). |
+**Success check:** after roughly 20 minutes you can sign in again and continue with Task 3.
 
-  > **Screenshot placeholder:** _Enterprise Profitability and Cost Management landing page showing the Create, Start, and Migrate options._
+  > **Screenshot placeholder:** _Confirmation dialog after clicking Select, and the "preconfiguration in progress" message._
 
-  > **Note:** In the **Create Application** wizard, the **Dimension Mapping** and **Customize** options are disabled and are not applicable for Enterprise Profitability and Cost Management.
+## Task 3: Select Enterprise Profitability and Cost Management
 
-## Task 3: Choose your path through the workshop
+After preconfiguration finishes, you choose the specific business process.
 
-Depending on which lab you run next, choose one option now:
+1. Sign in again.
 
-* **Create an EPCM application from scratch** &rarr; use **Start**. See the *Create an EPCM Application from Scratch* lab.
-* **Migrate an existing PCM application** &rarr; use **Migrate**. See the *Migrate from PCM to EPCM* lab (it also covers generating and uploading the snapshot from the PCM side first).
-* **Explore rules and the PCM Agent quickly** &rarr; use **Create** to deploy the **BksML50** sample application. The rule labs and the PCM Agent lab are written against this sample.
+2. Click **Select** under **Enterprise Profitability and Cost Management**.
 
-The **BksML50** sample application models "Bikes", a fictional bicycle manufacturer and distributor. It includes 8 rule sets containing 26 rules (a waterfall of currency conversions followed by allocations), with revenue and expenses dimensionalized across **Entity**, **Account**, **Activity**, **Product**, and **Customer**, plus analysis views.
+**Expected outcome:** the **Enterprise Profitability and Cost Management** page opens, showing three ways to create the application.
 
-To deploy it: on the business process landing page click **Create**, wait for the process to finish, and when the **Application created successfully** message appears, click **OK** to open the sample application.
+**Success check:** you can see the **CREATE**, **START**, and **MIGRATE** options described in Task 4.
+
+  > **Screenshot placeholder:** _Enterprise Profitability and Cost Management page showing the CREATE, START, and MIGRATE options._
+
+## Task 4: Understand the three creation choices
+
+| Button | What it does | Who uses it |
+| --- | --- | --- |
+| **CREATE** | Creates a ready-made **sample application** with data and artifacts already built, so you can explore EPCM immediately. | Optional. Handy if you only want to try the PCM Agent. |
+| **START** | Opens a wizard to build a **new, empty application** that you configure yourself. | **Path A** (the main new-application journey). |
+| **MIGRATE** | Builds the application from an **application snapshot** you have already uploaded to the environment. | **Path B** (migrating a legacy PCM application). |
+
+**Do not click yet unless you are continuing now.** Once you create an application, this landing page is no longer available.
+
+### Choose your next lab
+
+* **Path A &ndash; build a new application:** go to **Path A Lab 2: Create a New EPCM Application** (it uses **START**).
+* **Path B &ndash; migrate a legacy PCM application:** go to **Path B Lab 2: Prepare and Generate the PCM Migration Template**. You will come back to this page and use **MIGRATE** in Path B Lab 3.
 
 ## Learn More
 
-* [Creating a Business Process from the EPM Enterprise Landing Page](https://docs.oracle.com/en/cloud/saas/enterprise-performance-management-common/cgsad/1_about_epm_enterprise_landing_page.html)
-* [Creating the Sample Application](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/creating_a_sample_application.html)
-* [Creating a New Application](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/creating_a_new_application.html)
-* [Enterprise Profitability and Cost Management Quick Start Checklists](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/ckepf/epcmcs_service_admin_administer.html)
+* [Preconfiguring Your Environment (Oracle EPCM documentation)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/preconfiguring_your_environment.html)
 
 ## Acknowledgements
 

@@ -1,0 +1,8 @@
+Entity,Parent,Alias: Default,Data Storage
+Service Centers,Total Entity,Service Centers,
+SVC-1,Service Centers,Service Center 1,Never Share
+SVC-2,Service Centers,Service Center 2,Never Share
+Operating Centers,Total Entity,Operating Centers,
+OPS-1,Operating Centers,Operating Center 1,Never Share
+OPS-2,Operating Centers,Operating Center 2,Never Share
+OPS-3,Operating Centers,Operating Center 3,Never Share

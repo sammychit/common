@@ -1,0 +1,56 @@
+{
+    "workshoptitle": "Adopt EPCM: Migrate a Legacy Profitability and Cost Management Application",
+    "help": "livelabs-help-epm_us@oracle.com",
+    "tutorials": [
+        {
+            "title": "Get Started",
+            "description": "Prerequisites: a source PCM environment and a separate empty EPCM target environment, both with Service Administrator access.",
+            "filename": "https://oracle-livelabs.github.io/common/labs/cloud-login/cloud-login.md"
+        },
+        {
+            "title": "Introduction",
+            "description": "About this workshop and how to choose your adoption path.",
+            "filename": "../../introduction/introduction.md"
+        },
+        {
+            "title": "Common Lab 1: Enable the EPCM Business Process",
+            "description": "Preconfigure the target environment for Enterprise Profitability and Cost Management.",
+            "filename": "../../setup-epcm-environment/setup-epcm-environment.md"
+        },
+        {
+            "title": "Reference: EPCM Modeling Concepts",
+            "description": "A short read on models, rule sets, rules, and POVs.",
+            "filename": "../../epcm-modeling-concepts/epcm-modeling-concepts.md"
+        },
+        {
+            "title": "Path B Lab 2: Prepare and Generate the PCM Migration Template",
+            "description": "Clean up the source PCM application and generate the XML migration template.",
+            "filename": "../../prepare-pcm-migration-template/prepare-pcm-migration-template.md"
+        },
+        {
+            "title": "Path B Lab 3: Customize, Validate, and Run the PCM-to-EPCM Migration",
+            "description": "Edit the template, upload it, validate, and generate the snapshot or migrate directly.",
+            "filename": "../../run-pcm-to-epcm-migration/run-pcm-to-epcm-migration.md"
+        },
+        {
+            "title": "Path B Lab 4: Validate the Migrated Application and Complete Post-Migration Tasks",
+            "description": "Validate dimensions, models, and data, and plan the artifacts you must recreate.",
+            "filename": "../../validate-migrated-application/validate-migrated-application.md"
+        },
+        {
+            "title": "Optional Lab: Enable the PCM Agent",
+            "description": "Turn on the Generative AI assistant.",
+            "filename": "../../setup-pcm-agent/setup-pcm-agent.md"
+        },
+        {
+            "title": "Optional Lab: Use the PCM Agent",
+            "description": "Create sandbox modeling artifacts and calculate with natural language.",
+            "filename": "../../use-pcm-agent/use-pcm-agent.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to common problems and directions for receiving live help.",
+            "filename": "https://oracle-livelabs.github.io/common/labs/need-help/need-help-livelabs.md"
+        }
+    ]
+}

@@ -1,127 +1,126 @@
-# Create an EPCM Application from Scratch
+# Path A Lab 2: Create a New EPCM Application
 
 ## Introduction
 
-In this lab you create a new, empty Enterprise Profitability and Cost Management application with the **Create Application** wizard, then configure it by creating dimensions, importing metadata, and loading data. This follows the Service Administrator quick-start sequence: create the application, create dimensions, load dimensions into the application, and populate the application with data.
+### What "create an application" means
 
-Estimated Lab Time: -- minutes
+In **Common Lab 1** you switched the environment on for EPCM (preconfiguration). That gave you an empty EPCM framework. **Creating an application** is the next step: a short **wizard** where you set the three things that are **fixed for the life of the application** &mdash; its **name**, its **calendar** (which years and periods it covers), and its **currency** setup. After the wizard, the application exists but is still empty; you add accounts, departments, and numbers in Lab 3.
+
+### Why this lab matters
+
+The calendar and the multicurrency choice **cannot be changed later**. Getting them right now avoids having to reset the whole environment and start over.
+
+> Do this lab only if you are on **Path A**. If you are migrating a legacy PCM application, use **Path B**.
+
+Estimated Lab Time: 20 minutes
 
 ### Objectives
 
 In this lab, you will:
 
-* Create a new application with the **Start** option and the **Create Application** wizard
-* Create and configure dimensions
-* Import metadata (dimension members)
-* Import data
-* Create a Point of View (POV) so models can be calculated
+* Start the **Create Application** wizard
+* Set the application **name and description**
+* Set the **calendar** (period frequency, year range, first month)
+* Set the **currency** option
+* Review and create the application
 
 ### Prerequisites
 
-Ensure that:
+* You completed **Common Lab 1**; the environment is preconfigured and you are on the **Enterprise Profitability and Cost Management** page
+* No application has been created yet
 
-* You have completed the *Enable the Enterprise Profitability and Cost Management Business Process* lab
-* You are on the Enterprise Profitability and Cost Management business process landing page, with **no** application yet created
-* You have your dimension and data files prepared (or use small sample files provided with this workshop)
+## Task 1: Start the wizard
 
-> **Note:** An EPM Enterprise environment supports only one application, and you cannot return to the landing page after creating one. If you want to keep the **BksML50** sample for the rule labs, run this lab on a separate environment.
+**Why:** this opens the guided setup.
 
-## Task 1: Create the application
+1. On the **Enterprise Profitability and Cost Management** page, under **Create a new application**, click **Start**.
 
-1. On the Enterprise Profitability and Cost Management landing page, under **Create a new application**, click **Start**. The **Create Application** wizard opens.
+**Expected outcome:** the **Create Application** wizard opens at the **General** page.
 
-2. Complete the wizard steps:
+**Success check:** you see a wizard with steps for General and Details.
 
-  | Wizard step | What you enter |
+  > **Note:** The **Dimension Mapping** and **Customize** options are disabled &mdash; they do not apply to EPCM.
+
+  > **Screenshot placeholder:** _Enterprise Profitability and Cost Management page with the Start button under "Create a new application"._
+
+## Task 2: Enter a name and description
+
+**Why:** the name identifies the application. It cannot be changed after creation.
+
+1. On the **Create Application: General** page, enter a **Name** (for example, `EPCMTRAIN`).
+
+2. Enter a **Description** (optional).
+
+3. Click **Next**.
+
+**Success check:** the wizard moves to the **Details** page.
+
+  > **Screenshot placeholder:** _Create Application: General page with Name and Description entered._
+
+## Task 3: Set up the calendar
+
+**Why:** the calendar creates the **Years** dimension (the fiscal years) and the **Period** dimension (the months). Its range and start month are permanent.
+
+The calendar is in the **Period Frequency** section of the **Create Application: Details** page.
+
+1. Choose a **period frequency**:
+
+  | Frequency | Fields |
   | --- | --- |
-  | **Name and Description** | A unique application name and an optional description. |
-  | **Calendar** | The calendar's start and end year, the first month of the fiscal year, and the period frequency (for example, Monthly). |
-  | **Currencies** | The main (reporting) currency, and whether the application is multicurrency. |
-  | **Review** | Review the application information, then create the application. |
+  | **Monthly** | **Start and End Year**, **First Month of Fiscal Year**. If the first month is not January, also **Fiscal Year Start Date** (**Same Calendar Year** or **Previous Calendar Year**). |
+  | **Quarterly** | **Start and End Year**, **First Fiscal Period Start Date**. |
+  | **Custom** | **Start and End Year**, **Periods Per Year**, **Prefix**. |
 
-  > **Note:** The **Dimension Mapping** and **Customize** wizard options are disabled and are not applicable for Enterprise Profitability and Cost Management.
+  For this workshop, choose **Monthly**.
 
-  > **Screenshot placeholder:** _Create Application wizard on the Review step, showing name, calendar, and currency selections._
+2. Set **Start and End Year** to **2024** to **2025**. This matches the training data in Lab 3 and creates the Years members `FY24` and `FY25`.
 
-3. When the application has been created, open it from the Home page.
+3. Set **First Month of Fiscal Year** to **January**. This builds the Period dimension as `Jan` &hellip; `Dec`.
 
-## Task 2: Create and configure dimensions
+**Success check:** the Period Frequency section shows Monthly, 2024&ndash;2025, and January.
 
-Enterprise Profitability and Cost Management applications contain business dimensions (such as **Account** and **Entity**), any custom dimensions your model requires, the **POV** dimensions (**Years**, **Period**, **Scenario**, **Version**), and system dimensions (for example, **Rule** and **Balance**), which are created for you.
+  > **Screenshot placeholder:** _Period Frequency section with Monthly, the 2024-2025 range, and January._
 
-1. From the Home page, click **Application**, then **Overview**.
+## Task 4: Set up currencies
 
-2. Select the **Dimensions** tab.
+**Why:** this decides whether the application can hold input in more than one currency. It **cannot be changed after creation**.
 
-3. Click the drop-down next to **Cube** and select the cube to add the dimension to.
+Currencies are in the **Other Details** section of the **Create Application: Details** page.
 
-4. Click **Create** and, on the **Create Dimension** page, enter:
+1. Set **Main Currency** to your reporting currency (for example, **USD**).
 
-  * **Dimension** &ndash; a name that is unique across all dimensions
-  * **Description** &ndash; optional
-  * **Alias Table** and **Alias** &ndash; optional alternate name
-  * **Apply Security** &ndash; select to allow security on the dimension's members
-  * **Data Storage** &ndash; **Store**, **Dynamic Calc**, **Never Share**, or **Label Only**
-  * **Display Option** &ndash; default display in the Member Selection dialog
+2. Set **Multicurrency Support** to **No**. The Lab 3 training data has no currency member, so it expects a single-currency application. Choose **Yes** only for a real project that loads input in several currencies (then you must add a currency member to the data file).
 
-5. Under the cube list, select **Enabled** next to each cube that will use the dimension, then click **Done**.
+  * If you select **Yes**, a **Currency** dimension is created and the Main Currency becomes its first member.
 
-  > **Screenshot placeholder:** _Dimensions tab on the Application Overview page with the Create Dimension panel open._
+3. Click **Next**.
 
-6. Repeat for each dimension your model needs.
+**Success check:** Other Details shows your Main Currency and **Multicurrency Support = No**.
 
-## Task 3: Import metadata (dimension members)
+  > **Screenshot placeholder:** _Other Details section with Main Currency and Multicurrency Support set to No._
 
-Build out each dimension's member hierarchy by importing metadata.
+## Task 5: Review and create
 
-1. From the Home page, click **Application**, then **Overview**, and select the **Dimensions** tab.
+1. On the **Create Application: Review** page, check the summary against Tasks 2&ndash;4.
 
-2. Click **Import**.
+2. Click **Create**.
 
-3. Choose the source (a file in the inbox, or a local file), map the file to the dimension, and run the import as a job.
+3. Wait for creation to finish, then open the application from the Home page.
 
-4. After the job completes, open each dimension in the **Dimensions** tab to verify the member hierarchy.
+**Expected outcome:** the application is created and opens on the Home page.
 
-  > **Screenshot placeholder:** _Import Metadata dialog with a dimension file selected._
+**Success check:** the Home page shows the **Application** cluster; **Application &rarr; Overview &rarr; Dimensions** lists Account, Entity, Period, Years, Scenario, Version, PCM_Rule, and PCM_Balance.
 
-## Task 4: Import data
+  > **Screenshot placeholder:** _Review page summary, and the new application open on the Home page._
 
-1. From the Home page, click **Application**, then **Overview**, and select the **Data** tab (or use **Application** &rarr; **Data Exchange**).
+## Task 6: Next
 
-2. Click **Import**, select your data file, map it, and run the import.
-
-3. Review the job status in **Application** &rarr; **Jobs**.
-
-  > **Screenshot placeholder:** _Import Data dialog and the resulting job in the Jobs console._
-
-## Task 5: Create a Point of View
-
-A Point of View (POV) is a specific combination of **Years**, **Period**, **Scenario**, and **Version** members. You must create a POV before you can calculate models or analyze calculations against that data combination. Only POVs with a status of **Draft** can have calculation control actions performed on them.
-
-1. From the Home page, click **Application**, then **Overview**, and select the **Point of View** tab.
-
-2. Create a POV by selecting one member from each POV dimension (for example, `2024`, `Jan`, `Actual`, `Working`).
-
-3. Confirm the new POV has a status of **Draft**.
-
-  > **Screenshot placeholder:** _Point of View tab with a new Draft POV created._
-
-## Task 6: Next steps
-
-Your application now has dimensions, metadata, data, and at least one POV. Continue with:
-
-* *Create a Model and Rule Set*
-* *Create an Allocation Rule*
-* *Create a Custom Calculation Rule*
+The application exists but has no members or data. Continue with **Path A Lab 3: Configure Dimensions and Load Metadata and Data**.
 
 ## Learn More
 
-* [Creating a New Application](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/creating_a_new_application.html)
-* [Creating a Dimension](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/creating_a_dimension.html)
-* [Importing Metadata](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/importing_metadata.html)
-* [Importing Data](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/importing_data.html)
-* [Understanding Points of View](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/understanding_points_of_view.html)
-* [Enterprise Profitability and Cost Management Quick Start Checklists](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/ckepf/epcmcs_service_admin_administer.html)
+* [Creating a New Application (Oracle EPCM documentation)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/creating_a_new_application.html)
+* [Setting Up Currencies (Oracle EPCM documentation)](https://docs.oracle.com/en/cloud/saas/enterprise-profitability-cost-management-cloud/pcmpl/set_up_currencies.html)
 
 ## Acknowledgements
 
